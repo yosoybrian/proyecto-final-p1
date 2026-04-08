@@ -1,0 +1,230 @@
+# ===================================
+# .gitignore para Proyecto PHP - GitHub Classroom
+# ===================================
+
+# ==========================================
+# DEPENDENCIAS Y LIBRERÍAS
+# ==========================================
+# Mantener el directorio exercises aunque esté vacío
+!exercises/
+# Composer
+/vendor/
+composer.phar
+composer.lock.tmp
+
+# ==========================================
+# ARCHIVOS TEMPORALES Y CACHÉS
+# ==========================================
+
+# Archivos temporales PHP
+*.tmp
+*.temp
+*.cache
+.DS_Store
+Thumbs.db
+
+# Cachés de desarrollo
+/.phpunit.cache
+/phpunit.cache
+/.php_cs.cache
+/.php-cs-fixer.cache
+.phpunit.result.cache
+
+# Logs
+*.log
+/logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# ENTORNOS DE DESARROLLO
+# ==========================================
+
+# VS Code (mantener configuración compartida para estudiantes)
+# .vscode/
+
+# PhpStorm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# Sublime Text
+*.sublime-workspace
+
+# ==========================================
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLES
+# ==========================================
+
+# Variables de entorno (si se usan)
+.env
+.env.local
+.env.production
+.env.test
+
+# Configuraciones locales específicas
+config.local.php
+database.local.php
+
+# ==========================================
+# ARCHIVOS DE BUILD Y DISTRIBUCIÓN
+# ==========================================
+
+# Directorios de build
+/build/
+/dist/
+/release/
+
+# ==========================================
+# REPORTES Y RESULTADOS DE TESTS
+# ==========================================
+
+# Reportes de tests (mantener para revisión)
+# /reports/
+
+# Cobertura de código
+/coverage/
+clover.xml
+phpunit.xml.bak
+
+# Archivos de resultados temporales
+test-results-*.html
+test-results-*.xml
+
+# ==========================================
+# ARCHIVOS DEL SISTEMA OPERATIVO
+# ==========================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==========================================
+# GITHUB CLASSROOM ESPECÍFICO
+# ==========================================
+
+# GitHub Classroom - feedback (no ignorar para que se vea el feedback)
+# .github/classroom/
+
+# GitHub Actions logs locales
+.github/workflows/*.log
+
+# ==========================================
+# ARCHIVOS DE HERRAMIENTAS DE DESARROLLO
+# ==========================================
+
+# PHP Mess Detector
+.phpmd.xml
+
+# PHPLOC
+.phploc.xml
+
+# PHP_CodeSniffer
+.phpcs.xml.cache
+
+# Phan
+.phan/
+
+# Psalm
+.psalm/
+
+# ==========================================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# ==========================================
+
+# Archivos de backup del editor
+*.bak
+*.backup
+*.orig
+*.rej
+
+# Archivos de notas personales (opcional - permite notas locales)
+notes.txt
+notes.md
+TODO.local
+NOTAS_PERSONALES.md
+
+# Archivos de pruebas experimentales (opcional)
+test.php
+playground.php
+scratch.php
+
+# ==========================================
+# CONFIGURACIONES ESPECÍFICAS PARA ESTUDIANTES
+# ==========================================
+
+# Permitir que los estudiantes tengan archivos locales de configuración
+# sin interferir con el repositorio principal
+
+# Archivos de configuración personal
+*.local.*
+
+# Scripts personales de estudiante
+my_*.php
+student_*.php
+
+# ==========================================
+# EXCLUSIONES IMPORTANTES (NO IGNORAR)
+# ==========================================
+
+# Archivos importantes que NO deben ignorarse:
+# - README.md (documentación del proyecto)
+# - composer.json (configuración de dependencias)
+# - phpunit.xml (configuración de tests)
+# - .github/classroom/ (configuración de GitHub Classroom)
+# - .devcontainer/ (configuración de entorno para estudiantes)
+# - exercises/ (archivos de ejercicios para completar)
+# - tests/ (tests que deben ejecutar los estudiantes)
+# - solutions/ (soluciones para referencia del instructor)
+# - public/ (interfaz web para estudiantes)
+# - scripts/ (herramientas de utilidad)
+
+# ==========================================
+# NOTAS PARA INSTRUCTORES
+# ==========================================
+
+# Este .gitignore está optimizado para:
+# 1. Mantener el repositorio limpio para estudiantes
+# 2. Evitar conflictos con diferentes entornos de desarrollo
+# 3. Preservar archivos importantes para GitHub Classroom
+# 4. Permitir flexibilidad para archivos personales del estudiante
+# 5. Optimizar el tamaño del repositorio
+
+# Para agregar exclusiones específicas por ejercicio,
+# crear un .gitignore adicional en el directorio del ejercicio.
+junit-results.xml
+test-results.html

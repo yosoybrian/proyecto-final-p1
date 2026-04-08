@@ -1,0 +1,41 @@
+# EditorConfig - Configuración consistente de editores
+# https://editorconfig.org
+
+root = true
+
+# Configuración por defecto para todos los archivos
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# Archivos PHP
+[*.php]
+indent_size = 4
+
+# Archivos de shell
+[*.sh]
+indent_size = 2
+
+# Archivos PlantUML
+[*.{puml,plantuml}]
+indent_size = 2
+
+# Archivos de configuración
+[*.{json,yml,yaml}]
+indent_size = 2
+
+# Archivos Markdown (preservar espacios al final para saltos de línea)
+[*.md]
+trim_trailing_whitespace = false
+
+# Composer files
+[composer.json]
+indent_size = 4
+
+# Makefiles requieren tabs
+[Makefile]
+indent_style = tab

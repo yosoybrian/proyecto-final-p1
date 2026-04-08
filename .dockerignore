@@ -1,0 +1,37 @@
+# Ignora archivos innecesarios para la imagen Docker
+.git
+.gitignore
+.devcontainer
+README.md
+.vscode
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Logs y archivos temporales
+*.log
+logs/
+reports/
+test-results.html
+junit-results.xml
+
+# Archivos de desarrollo
+.env
+.env.local
+.env.*.local
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Cache de node (si existe)
+node_modules
+npm-debug.log*
+
+# Archivos de IDE
+.idea
+*.swp
+*.swo
+
+#Módulos de vendor
+vendor/

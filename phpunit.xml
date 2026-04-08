@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         testdox="true">
+    
+    <testsuites>
+        <testsuite name="Exercises">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    
+    <source>
+        <include>
+            <directory>exercises</directory>
+        </include>
+    </source>
+    
+    <logging>
+        <testdoxHtml outputFile="test-results.html"/>
+        <junit outputFile="junit-results.xml"/>
+    </logging>
+</phpunit>

@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  # Servicio PHP con Apache
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-testing-environment
+    ports:
+      - "8000:80"
+    volumes:
+      # Monta el código fuente para desarrollo (hot reload)
+      - .:/var/www/html
+      - ./logs:/var/log/apache2
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+      - APACHE_LOG_DIR=/var/log/apache2
+    networks:
+      - php-network
+    restart: unless-stopped
+
+  # Servicio para ejecutar PHP CLI (útil para tests y scripts)
+  php-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-cli-testing
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - php-network
+    profiles:
+      - cli
+    tty: true
+    stdin_open: true
+
+networks:
+  php-network:
+    driver: bridge
+
+# Opcional: Volúmenes persistentes para logs
+volumes:
+  logs:
+    driver: local

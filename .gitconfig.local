@@ -1,0 +1,16 @@
+# Configuración Git local para normalización de líneas
+# Este archivo es usado por los devcontainers
+
+[core]
+	# Normalizar finales de línea automáticamente
+	autocrlf = input
+	eol = lf
+	
+	# Usar hooks personalizados
+	hooksPath = .git/hooks
+
+[pull]
+	rebase = false
+
+[init]
+	defaultBranch = main

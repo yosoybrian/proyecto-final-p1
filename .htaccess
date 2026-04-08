@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Redirigir todas las peticiones a /api/* hacia api.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ public/api.php [QSA,L]
+
+# Proteger archivos sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(sqlite|db)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

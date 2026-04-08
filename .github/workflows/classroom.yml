@@ -1,0 +1,133 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, zip
+        coverage: none
+
+    - name: Install Graphviz
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y graphviz libfreetype6 fontconfig
+        sudo ldconfig
+
+    - name: Install Dependencies
+      run: composer install --no-interaction --prefer-dist
+
+    # API REST - Database (12 tests = 18 pts, ~1.5 pts/test)
+    - name: API - Database (18 pts)
+      id: api-database
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Database y Singleton
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/DatabaseTest.php --no-coverage
+        timeout: 10
+        max-score: 18
+
+    # API REST - PacienteRepository (10 tests = 18 pts, ~1.8 pts/test)
+    - name: API - PacienteRepository (18 pts)
+      id: api-paciente-repo
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Repositorio de Pacientes
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/PacienteRepositoryTest.php --no-coverage
+        timeout: 10
+        max-score: 18
+
+    # API REST - CitaRepository (9 tests = 16 pts, ~1.8 pts/test)
+    - name: API - CitaRepository (16 pts)
+      id: api-cita-repo
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Repositorio de Citas
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/CitaRepositoryTest.php --no-coverage
+        timeout: 10
+        max-score: 16
+
+    # API REST - Controllers (18 tests = 27 pts, 1.5 pts/test)
+    - name: API - Controllers (27 pts)
+      id: api-controllers
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Controladores REST
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/ControllerTest.php --no-coverage
+        timeout: 10
+        max-score: 27
+
+    # API REST - Validation (10 tests = 18 pts, 1.8 pts/test)
+    - name: API - Validation (18 pts)
+      id: api-validation
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Validaciones
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/ValidationTest.php --no-coverage
+        timeout: 10
+        max-score: 18
+
+    # API REST - Integration (5 tests = 9 pts, 1.8 pts/test)
+    - name: API - Integration (9 pts)
+      id: api-integration
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Integración
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/IntegrationTest.php --no-coverage
+        timeout: 10
+        max-score: 9
+
+    # API REST - Project Structure (10 tests = 18 pts, 1.8 pts/test)
+    - name: API - ProjectStructure (18 pts)
+      id: api-structure
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Estructura del Proyecto
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/ProjectStructureTest.php --no-coverage
+        timeout: 10
+        max-score: 18
+
+    # API REST - HTTP Endpoints (9 tests = 26 pts, ~2.9 pts/test)
+    - name: API - HTTP Endpoints (26 pts)
+      id: api-http
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Endpoints HTTP
+        setup-command: ''
+        command: vendor/bin/phpunit tests/Api/HttpEndpointsTest.php --no-coverage
+        timeout: 15
+        max-score: 26
+
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        API-DATABASE_RESULTS: "${{ steps.api-database.outputs.result }}"
+        API-PACIENTE-REPO_RESULTS: "${{ steps.api-paciente-repo.outputs.result }}"
+        API-CITA-REPO_RESULTS: "${{ steps.api-cita-repo.outputs.result }}"
+        API-CONTROLLERS_RESULTS: "${{ steps.api-controllers.outputs.result }}"
+        API-VALIDATION_RESULTS: "${{ steps.api-validation.outputs.result }}"
+        API-INTEGRATION_RESULTS: "${{ steps.api-integration.outputs.result }}"
+        API-STRUCTURE_RESULTS: "${{ steps.api-structure.outputs.result }}"
+        API-HTTP_RESULTS: "${{ steps.api-http.outputs.result }}"
+      with:
+        runners: api-database,api-paciente-repo,api-cita-repo,api-controllers,api-validation,api-integration,api-structure,api-http

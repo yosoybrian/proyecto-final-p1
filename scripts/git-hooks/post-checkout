@@ -1,0 +1,34 @@
+#!/bin/bash
+# Git post-checkout hook
+# Se ejecuta automáticamente después de clonar o hacer checkout
+# Normaliza finales de línea y configura el entorno
+
+# Solo ejecutar después de clonar (ref inicial es 0000000...)
+if [ "$1" = "0000000000000000000000000000000000000000" ]; then
+    echo ""
+    echo "🎓 ¡Bienvenido al repositorio de tareas!"
+    echo "========================================"
+    echo ""
+    echo "🔧 Configurando entorno automáticamente..."
+    
+    # Normalizar finales de línea
+    if [ -f "scripts/normalize-line-endings.sh" ]; then
+        bash scripts/normalize-line-endings.sh
+    fi
+    
+    # Instalar hooks
+    if [ -f "scripts/git-hooks/pre-commit" ]; then
+        cp scripts/git-hooks/pre-commit .git/hooks/pre-commit
+        chmod +x .git/hooks/pre-commit
+        echo "✅ Git hooks instalados"
+    fi
+    
+    echo ""
+    echo "📚 Lee la guía para estudiantes: GUIA-ESTUDIANTES.md"
+    echo ""
+    echo "🚀 Para completar la configuración, ejecuta:"
+    echo "   bash scripts/setup-student-environment.sh"
+    echo ""
+fi
+
+exit 0

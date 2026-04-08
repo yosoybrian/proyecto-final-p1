@@ -1,0 +1,62 @@
+version: "3.8"
+
+# Configuración extendida para desarrollo
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: php-testing-dev
+    ports:
+      - "8000:80"
+      - "9003:9003" # Puerto para Xdebug
+    volumes:
+      - .:/var/www/html
+      - ./logs:/var/log/apache2
+      - php-composer-cache:/var/www/html/vendor
+    environment:
+      - XDEBUG_MODE=debug,coverage
+      - XDEBUG_CONFIG=client_host=host.docker.internal client_port=9003 start_with_request=yes
+      - PHP_IDE_CONFIG=serverName=docker
+    networks:
+      - php-network
+    restart: unless-stopped
+    depends_on:
+      - mailhog
+
+  # Servicio CLI para tests y desarrollo
+  php-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-cli-dev
+    volumes:
+      - .:/var/www/html
+      - php-composer-cache:/var/www/html/vendor
+    working_dir: /var/www/html
+    networks:
+      - php-network
+    environment:
+      - XDEBUG_MODE=debug,coverage
+      - XDEBUG_CONFIG=client_host=host.docker.internal client_port=9003
+    tty: true
+    stdin_open: true
+
+  # MailHog para testing de emails (opcional)
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog-testing
+    ports:
+      - "1025:1025" # SMTP
+      - "8025:8025" # Web interface
+    networks:
+      - php-network
+
+networks:
+  php-network:
+    driver: bridge
+
+volumes:
+  php-composer-cache:
+    driver: local

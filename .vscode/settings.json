@@ -1,0 +1,88 @@
+{
+    "php.validate.enable": true,
+    "php.validate.run": "onType",
+    "php.suggest.basic": false,
+    // Intelephense configuration
+    "intelephense.files.maxSize": 5000000,
+    "intelephense.completion.triggerParameterHints": true,
+    "intelephense.completion.insertUseDeclaration": true,
+    "intelephense.format.enable": true,
+    // PHPUnit configuration
+    "phpunit.php": "/usr/local/bin/php",
+    "phpunit.phpunit": "./vendor/bin/phpunit",
+    "phpunit.args": [
+        "--configuration",
+        "phpunit.xml",
+        "--testdox"
+    ],
+    "phpunit.clearOutputOnRun": true,
+    // Code formatting and saving
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    // Test Explorer
+    "testExplorer.useNativeTesting": true,
+    "testExplorer.gutterDecoration": true,
+    // Live Server configuration
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.root": "/public",
+    "liveServer.settings.port": 5500,    
+    // File associations
+    "files.associations": {
+        "*.php": "php",
+        "composer.json": "json",
+        "phpunit.xml": "xml"
+    },
+    // Code style
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": true,
+    // Terminal configuration
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    // Problem matchers for better error display
+    "problems.decorations.enabled": true,
+    // Exclude files from explorer
+    "files.exclude": {
+        "**/vendor/**": true,
+        "**/node_modules/**": true,
+        "**/.git/**": true,
+        "**/test-results.html": true,
+        "**/junit-results.xml": true
+    },
+    // Search exclude
+    "search.exclude": {
+        "**/vendor/**": true,
+        "**/node_modules/**": true,
+        "**/.git/**": true
+    },
+    // Emmet for PHP
+    "emmet.includeLanguages": {
+        "php": "html"
+    },
+    // Code spell checker
+    "cSpell.words": [
+        "phpunit",
+        "intelephense",
+        "phpstan",
+        "codeception",
+        "testdox",
+        "autoload",
+        "namespace"
+    ],
+    "plantuml.render": "PlantUMLServer",
+    "plantuml.server": "https://www.plantuml.com/plantuml",
+	"plantuml.jar": "tools/plantuml.jar",
+	"plantuml.commandArgs": [
+		
+
+
+		"-tsvg"
+	],
+	"plantuml.exportFormat": "svg",
+	"plantuml.exportOutDir": "exercises/diagramas/output",
+	"plantuml.exportSubFolder": false,
+    
+}

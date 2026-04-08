@@ -1,0 +1,5 @@
+# Ignorar SVG generados automáticamente
+*.svg
+
+# Mantener el directorio
+!.gitkeep

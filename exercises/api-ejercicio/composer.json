@@ -1,0 +1,13 @@
+{
+    "name": "estudiante/mi-primera-api",
+    "description": "Mi primera API para gestión de citas médicas",
+    "type": "project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ApiEjercicio\\": "src/"
+        }
+    }
+}
